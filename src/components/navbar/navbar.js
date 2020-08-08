@@ -1,7 +1,8 @@
 import React from 'react';
 import './navbar.css';
 import logo from './assets/logoExtremo.png'
-import shopingCart from './assets/shoppingCart.png';
+import CartIcon from './CartIcon';
+
 
 
 
@@ -26,9 +27,7 @@ function Nav() {
             </ul> */}
             <ul className="shoppingCartMenu">
                 <li>
-                    <a href="#">
-                        <img className="shoppingCart" src={shopingCart} alt="Shopping Kart" title="Shopping Kart"></img>
-                    </a>
+                    <CartIcon path="#"/>
                 </li>
                 <li><button className="item button">LogIn</button></li>
                 <li><button className="item button secondary">SignUp</button></li>
