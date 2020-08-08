@@ -15,13 +15,8 @@
 
 .App-header {
   background-color: #282c34;
-  min-height: 10vh;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
   font-size: calc(10px + 2vmin);
-  color: white;
+  color: rgb(189, 189, 189);
 }
 
 .App-link {
@@ -38,36 +33,4 @@
 }
 
 
-/* My Style */
-/* NAVBAR */
-ul { 
-  list-style-type: none; 
-} 
 
-a { 
-  color: rgb(214, 214, 214); 
-  text-decoration: none; 
-} 
-
-
-a:hover { 
-  text-decoration: none; 
-}
-
-.menu {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap; 
-  justify-content: space-evenly;
-  align-items: center;
-}
-
-.item { 
-  text-decoration: none;
-  display: block; 
-  width: auto; 
-  margin-left: 2rem;
-  font-size: 1rem;
-}
-
-/* END NAVBAR */

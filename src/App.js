@@ -1,13 +1,13 @@
 import React from 'react';
 import './App.css';
 import Home from './containers/Home';
-import Nav from './components/navbar';
+import Nav from './components/navbar/navbar';
 
 
 function App() {
   const link = "https://reactjs.org";
-  const title ='Probando componentes';
-  const subtitle ='Que locuraaaaaa!';
+  const title ='Prometo cambiar el carrito...';
+  const subtitle ='Me quedo mal';
 
   return (
     <div className="App">
