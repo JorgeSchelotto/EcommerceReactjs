@@ -36,7 +36,7 @@ ul {
     text-decoration: none;
     display: block; 
     width: auto; 
-    margin-left: 2rem;
+    margin: 0 1rem 0 1rem;
     font-size: 1rem;
     background: #282C34;
     color: rgb(214, 214, 214);
