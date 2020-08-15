@@ -1,0 +1,65 @@
+.countContainer{
+    border-radius: 25px;
+    background: rgb(243, 243, 243);
+    padding: .5rem;
+    max-width: 7%;
+    min-width: 5%;
+    max-height: 10%;
+    min-height: 10%;
+    -webkit-box-shadow: 10px 10px 26px -16px rgba(0,0,0,0.75);
+    -moz-box-shadow: 10px 10px 26px -16px rgba(0,0,0,0.75);
+    box-shadow: 10px 10px 26px -16px rgba(0,0,0,0.75);
+    display: block;
+    margin: auto;
+    
+  
+  }
+  
+  .countContainerAction{
+    /*background: green;*/
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    padding: .5em;
+    
+  
+  }
+  
+  
+  .countContainerActionButtons{
+    /*background: blue;*/
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    text-align: center;
+    
+  
+  }
+  
+  button {
+    transition-duration: 0.4s;
+    border: none;
+    background: rgb(243, 243, 243);
+    padding: .5rem;
+  }
+  
+  button:hover {
+    background-color: rgb(61, 61, 61); /* Green */
+    color: white;
+  }
+  
+  
+  h3 {
+    border-radius: 5px;
+    border: 1px solid rgb(119, 119, 119);
+    min-width: 60%;
+    min-height: 50%;
+    align-self: center;
+  
+  
+  }
+  
+  .countContainerCartButton{
+    /*background: yellow;*/
+  }
