@@ -2,10 +2,14 @@ import React, {useState, useEffect} from 'react';
 import Title from '../components/title';
 import Link from '../components/link';
 import Counter from "../components/Count/Counter";
+import {Container, Row, Col} from 'react-bootstrap';
+
 
 
 function Home({link, title, subtitle}){
-    const [total, setTotal] = useState(0);
+    let [total, setTotal] = useState(0);
+    const min = 1;
+    const max = 20
 
     useEffect(() => {
         if (total > 1) {
@@ -17,24 +21,29 @@ function Home({link, title, subtitle}){
 
 
     function onAddTotal(count){
-        setTotal(total + count)
+        setTotal( (total + count) >= max ? total = max : total + count)
     }
 
     return (
         <>
-            <Title title={title} subtitle={subtitle} />
-            <Link link={link} />
+        <Container>
+        <Row>
+        <Col md={{ span: 6, offset: 4 }} xs={{ span: 10, offset: 2 }}>
+            <Title style={{margin: "auto" }} title={title} subtitle={subtitle} />
+            <Link style={{margin: "auto" }} link={link} />
             <div>
                 <Counter
                     initial={1}
-                    min={1}
-                    max={20}
+                    min={min}
+                    max={max}
                     onAdd={onAddTotal}
+                    total={total}
                 />
             </div>
-            <p>{total}</p>
-
-
+            <p style={{margin: "auto" }}>{total} {(total >= 20).toString()} </p>
+        </Col>
+        </Row>
+        </Container>
         </>
 
     )

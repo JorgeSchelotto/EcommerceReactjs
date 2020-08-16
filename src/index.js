@@ -4,10 +4,10 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 
+
 ReactDOM.render(
-  <React.StrictMode>
-    <App/>
-  </React.StrictMode>, // Rebderiza la app sobre el root
+
+    <App/>, // Renderiza la app sobre el root
   document.getElementById('root')
 );
 

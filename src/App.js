@@ -1,21 +1,24 @@
 import React from 'react';
 import './App.css';
 import Home from './containers/Home';
-import Nav from './components/navbar/navbar';
+import NavDos from './components/navbar/NavVerDos';
 
 
 function App() {
   const link = "https://reactjs.org";
-  const title ='Prometo cambiar el carrito...';
-  const subtitle ='Me quedo mal';
+  const title ='Some content';
+  const subtitle ='Another content';
 
   return (
     <div className="App">
       <header className="App-header">
-        <Nav />
+        <NavDos />
       </header>
+
       <body>
+
         <Home link={link} title={title} subtitle={subtitle}/>
+
       </body>
     </div>
   );

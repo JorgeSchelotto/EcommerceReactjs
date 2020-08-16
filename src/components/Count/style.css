@@ -2,10 +2,7 @@
     border-radius: 25px;
     background: rgb(243, 243, 243);
     padding: .5rem;
-    max-width: 7%;
-    min-width: 5%;
-    max-height: 10%;
-    min-height: 10%;
+
     -webkit-box-shadow: 10px 10px 26px -16px rgba(0,0,0,0.75);
     -moz-box-shadow: 10px 10px 26px -16px rgba(0,0,0,0.75);
     box-shadow: 10px 10px 26px -16px rgba(0,0,0,0.75);

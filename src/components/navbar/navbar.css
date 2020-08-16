@@ -1,11 +1,18 @@
 /* My Style */
 /* NAVBAR */
 
+#responsive-navbar-nav:not(.collapsing):not(.show) {
+	height: auto !important;
+}
+
+
+
+
 .navbar{
     display: flex;
     flex-direction: row;
     justify-content: space-around;
-    max-height: 5rem;
+
 }
 ul { 
     list-style-type: none; 
