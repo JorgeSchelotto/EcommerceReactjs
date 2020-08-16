@@ -2,10 +2,11 @@ import React, { useState } from "react";
 import "./style.css";
 
 
-const  Counter = ({initial, max, min}) => {
+const  Counter = ({initial, max, min, onAdd}) => {
     const [ count , setCount ] = useState(initial);
     // count es el estado y setCount la funcion para actualizar el estado
-
+   
+ 
     function add(){
       setCount( (!isNaN(parseFloat(count)) && isFinite(count)) ? (count < max ? count + 1: count): count )
     };
@@ -14,6 +15,7 @@ const  Counter = ({initial, max, min}) => {
       setCount( (!isNaN(parseFloat(count)) && isFinite(count)) ? (count > min ? count - 1: count): count )
     };
 
+  
 
     return (
       <>
@@ -26,7 +28,8 @@ const  Counter = ({initial, max, min}) => {
             </div>
             <div className="countContainerCartButton">
               <button
-                disabled={(count <= 0) || (count > max)}
+                onClick={() => onAdd(count)}
+                disabled={(count <= 0) || (count > max) }
               > ADD</button>
             </div>
           </div>
