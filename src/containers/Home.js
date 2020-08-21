@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import Title from '../components/title';
-import Link from '../components/link';
 import Counter from "../components/Count/Counter";
 import items from '../components/ItemList/mockProducts';
 import ItemList from '../components/ItemList/ItemList';
@@ -15,6 +14,13 @@ function Home({ link, title, subtitle }) {
     const min = 1;
     const max = 20
 
+    const promProducts = new Promise((resolve, reject) => {
+        setTimeout(() => {
+            resolve(items);
+        }, 3000);
+      });
+
+      
     useEffect(() => {
         if (total > 1) {
             console.log('Threshold of over 1 reached.');
@@ -22,17 +28,6 @@ function Home({ link, title, subtitle }) {
             console.log('No threshold reached.');
         }
     }, [total]);
-
-
-    function onAddTotal(count) {
-        setTotal((total + count) >= max ? total = max : total + count)
-    }
-
-    const promProducts = new Promise((resolve, reject) => {
-        setTimeout(() => {
-            resolve(items);
-        }, 6000);
-      });
 
     useEffect(() => {
         promProducts.then(resolve => {
@@ -42,19 +37,29 @@ function Home({ link, title, subtitle }) {
     }, []);
 
 
+    function onAddTotal(count) {
+        setTotal((total + count) >= max ? total = max : total + count)
+    }
+
+
+
+
     return (
         <>
             <Container>
                 <Row className="justify-content-md-center">
                     <Title style={{ margin: "auto" }} title={title} subtitle={subtitle} />
                 </Row>
+
                 <Row>
-                    
-                <Col xs={12} md={7}>
-                        { loading && <p>Loading...</p>}
-                        <ItemList products={products} />
-                    </Col>
-                    <Col xs={12} md={5}>
+                <Col>
+                    {loading && <p>Loading...</p>}
+                    <ItemList products={products} />
+                </Col>
+                </Row>
+
+                <Row>
+                <Col xs={12} md={5}>
                         <div>
                             <Counter
                                 initial={1}
