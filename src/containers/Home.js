@@ -2,13 +2,15 @@ import React, { useState, useEffect } from 'react';
 import Title from '../components/title';
 import Link from '../components/link';
 import Counter from "../components/Count/Counter";
-import products from '../components/ItemList/mockProducts';
+import items from '../components/ItemList/mockProducts';
 import ItemList from '../components/ItemList/ItemList';
 import { Container, Row, Col } from 'react-bootstrap';
 
 
 
 function Home({ link, title, subtitle }) {
+    const [products, setProducts] = useState([]);
+    const [loading, setLoading] = useState(true);
     let [total, setTotal] = useState(0);
     const min = 1;
     const max = 20
@@ -26,6 +28,20 @@ function Home({ link, title, subtitle }) {
         setTotal((total + count) >= max ? total = max : total + count)
     }
 
+    const promProducts = new Promise((resolve, reject) => {
+        setTimeout(() => {
+            resolve(items);
+        }, 6000);
+      });
+
+    useEffect(() => {
+        promProducts.then(resolve => {
+        setProducts(resolve); 
+        setLoading(false); 
+        });
+    }, []);
+
+
     return (
         <>
             <Container>
@@ -35,6 +51,7 @@ function Home({ link, title, subtitle }) {
                 <Row>
                     
                 <Col xs={12} md={7}>
+                        { loading && <p>Loading...</p>}
                         <ItemList products={products} />
                     </Col>
                     <Col xs={12} md={5}>
