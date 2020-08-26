@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 import Home from './containers/Home';
-import NavDos from './components/navbar/NavVerDos';
+import NavDos from './components/Navbar/NavVerDos';
 
 
 function App() {
@@ -15,11 +15,11 @@ function App() {
         <NavDos />
       </header>
 
-      <body>
+
 
         <Home link={link} title={title} subtitle={subtitle}/>
 
-      </body>
+
     </div>
   );
 }

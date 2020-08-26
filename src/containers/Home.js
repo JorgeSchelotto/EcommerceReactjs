@@ -3,6 +3,7 @@ import Title from '../components/title';
 import Counter from "../components/Count/Counter";
 import items from '../components/ItemList/mockProducts';
 import ItemList from '../components/ItemList/ItemList';
+import ItemDetailContainer from '../components/ItemDetailContainer/ItemDetailContainer';
 import { Container, Row, Col } from 'react-bootstrap';
 
 
@@ -14,13 +15,7 @@ function Home({ link, title, subtitle }) {
     const min = 1;
     const max = 20
 
-    const promProducts = new Promise((resolve, reject) => {
-        setTimeout(() => {
-            resolve(items);
-        }, 3000);
-      });
 
-      
     useEffect(() => {
         if (total > 1) {
             console.log('Threshold of over 1 reached.');
@@ -30,18 +25,24 @@ function Home({ link, title, subtitle }) {
     }, [total]);
 
     useEffect(() => {
+        const promProducts = new Promise((resolve, reject) => {
+            setTimeout(() => {
+                resolve(items);
+            }, 1000);
+          });
+
         promProducts.then(resolve => {
         setProducts(resolve); 
         setLoading(false); 
         });
+
+
     }, []);
 
 
     function onAddTotal(count) {
         setTotal((total + count) >= max ? total = max : total + count)
     }
-
-
 
 
     return (
@@ -55,11 +56,12 @@ function Home({ link, title, subtitle }) {
                 <Col>
                     {loading && <p>Loading...</p>}
                     <ItemList products={products} />
+                    <ItemDetailContainer products={products} />
                 </Col>
                 </Row>
 
                 <Row>
-                <Col xs={12} md={5}>
+                <Col xs={10} md={5}>
                         <div>
                             <Counter
                                 initial={1}
