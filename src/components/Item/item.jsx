@@ -1,5 +1,5 @@
 import React from 'react';
-import { CardColumns, Card, Button } from 'react-bootstrap';
+import { CardRow, Card, Button } from 'react-bootstrap';
 
 
 
@@ -9,8 +9,8 @@ export default function Item({product}){
     return(
 
 
-        <CardColumns>
-            <Card style={{ width: '18rem' }}>
+
+            <Card style={{ width: '18rem', margin: '1em' }}>
                 <Card.Img variant="top" src="holder.js/100px160" />
                 <Card.Body>
                     <Card.Title>{product.name}</Card.Title>
@@ -20,7 +20,7 @@ export default function Item({product}){
                     <Button variant="primary">Buy Me!</Button>
                 </Card.Body>
             </Card>
-        </CardColumns>
+
 
 
 

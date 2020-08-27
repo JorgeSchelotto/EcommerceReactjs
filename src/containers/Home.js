@@ -56,7 +56,7 @@ function Home({ link, title, subtitle }) {
                 <Col>
                     {loading && <p>Loading...</p>}
                     <ItemList products={products} />
-                    <ItemDetailContainer products={products} />
+                    <ItemDetailContainer />
                 </Col>
                 </Row>
 
