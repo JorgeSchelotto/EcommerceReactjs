@@ -28,7 +28,7 @@ function Home({ link, title, subtitle }) {
         const promProducts = new Promise((resolve, reject) => {
             setTimeout(() => {
                 resolve(items);
-            }, 1000);
+            }, 3000);
           });
 
         promProducts.then(resolve => {
@@ -71,7 +71,6 @@ function Home({ link, title, subtitle }) {
                                 total={total}
                             />
                         </div>
-                        <p style={{ margin: "auto" }}>{total} {(total >= 20).toString()} </p>
                     </Col>
                 </Row>
             </Container>
