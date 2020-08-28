@@ -3,7 +3,9 @@ import './App.css';
 import Home from './containers/Home';
 import NavDos from './components/Navbar/NavVerDos';
 import {BrowserRouter, Switch, Route} from 'react-router-dom';
-import ItemDetail from "./components/ItemDetail/ItemDetail"
+// import ItemDetail from "./components/ItemDetail/ItemDetail"
+import ItemDetailContainer from './components/ItemDetailContainer/ItemDetailContainer';
+import Cart from './components/ShoppingCart/Cart'
 
 
 function App() {
@@ -23,8 +25,11 @@ function App() {
           <Route exact path="/">
             <Home link={link} title={title} subtitle={subtitle}/>
           </Route>
-          <Route path="/item/:id">
-            <ItemDetail />
+          <Route path="/item/:id/detail">
+            <ItemDetailContainer />
+          </Route>
+          <Route path="/shoppingCart">
+            <Cart />
           </Route>
         </Switch>
       </BrowserRouter>

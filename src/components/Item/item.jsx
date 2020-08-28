@@ -19,7 +19,7 @@ export default function Item({product}){
                     <Card.Text>
                         {product.description}
                     </Card.Text>
-                    <Link to="/item/:id"><Button variant="primary">Show Detail!</Button></Link>
+                    <Link to={`/item/${product.id}/detail`}><Button variant="primary">Show Detail!</Button></Link>
                 </Card.Body>
             </Card>
 

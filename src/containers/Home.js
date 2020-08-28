@@ -3,7 +3,7 @@ import Title from '../components/title';
 import Counter from "../components/Count/Counter";
 import items from '../components/ItemList/mockProducts';
 import ItemList from '../components/ItemList/ItemList';
-import ItemDetailContainer from '../components/ItemDetailContainer/ItemDetailContainer';
+// import ItemDetailContainer from '../components/ItemDetailContainer/ItemDetailContainer';
 import { Container, Row, Col } from 'react-bootstrap';
 
 
@@ -53,11 +53,11 @@ function Home({ link, title, subtitle }) {
                 </Row>
 
                 <Row>
-                <Col>
-                    {loading && <p>Loading...</p>}
-                    <ItemList products={products} />
-                    <ItemDetailContainer />
-                </Col>
+                    <Col>
+                        {loading && <p>Loading...</p>}
+                        <ItemList products={products} />
+                        {/* <ItemDetailContainer /> */}
+                    </Col>
                 </Row>
 
                 <Row>
