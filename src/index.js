@@ -7,7 +7,7 @@ import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(
 
-    <App/>, // Renderiza la app sobre el root
+    <App />, // Renderiza la app sobre el root
   document.getElementById('root')
 );
 

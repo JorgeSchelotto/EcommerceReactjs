@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import Title from '../components/title';
-import Counter from "../components/Count/Counter";
 import items from '../components/ItemList/mockProducts';
 import ItemList from '../components/ItemList/ItemList';
 // import ItemDetailContainer from '../components/ItemDetailContainer/ItemDetailContainer';
@@ -11,18 +10,7 @@ import { Container, Row, Col } from 'react-bootstrap';
 function Home({ link, title, subtitle }) {
     const [products, setProducts] = useState([]);
     const [loading, setLoading] = useState(true);
-    let [total, setTotal] = useState(0);
-    const min = 1;
-    const max = 20
-
-
-    useEffect(() => {
-        if (total > 1) {
-            console.log('Threshold of over 1 reached.');
-        } else {
-            console.log('No threshold reached.');
-        }
-    }, [total]);
+    
 
     useEffect(() => {
         const promProducts = new Promise((resolve, reject) => {
@@ -40,9 +28,7 @@ function Home({ link, title, subtitle }) {
     }, []);
 
 
-    function onAddTotal(count) {
-        setTotal((total + count) >= max ? total = max : total + count)
-    }
+
 
 
     return (
@@ -54,22 +40,10 @@ function Home({ link, title, subtitle }) {
 
                 <Row>
                     <Col>
-                        {loading && <p>Loading...</p>}
-                        <ItemList products={products} />
-                        {/* <ItemDetailContainer /> */}
-                    </Col>
-                </Row>
-
-                <Row>
-                <Col xs={10} md={5}>
                         <div>
-                            <Counter
-                                initial={1}
-                                min={min}
-                                max={max}
-                                onAdd={onAddTotal}
-                                total={total}
-                            />
+                            {loading && <p>Loading...</p>}
+                            <ItemList products={products} />
+                            {/* <ItemDetailContainer /> */}
                         </div>
                     </Col>
                 </Row>
