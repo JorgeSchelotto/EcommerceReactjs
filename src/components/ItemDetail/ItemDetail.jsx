@@ -14,8 +14,8 @@ export default function ItemDetail({product}){
     const min = 1;
     const max = product.stock
     useEffect(() => {
-        if (total > 1) {
-            console.log('Threshold of over 1 reached.');
+        if (total > min) {
+            console.log(`Threshold of over ${min} reached.`);
         } else {
             console.log('No threshold reached.');
         }
@@ -42,7 +42,10 @@ export default function ItemDetail({product}){
                 </div>
 
                 <div>
-                    <p> Total {total ? total : '' }</p>
+                    <p> 
+                        <span>Total </span> 
+                        <span>{total ? total : '' }</span>
+                    </p>
                     <Link to="/shoppingCart">
                         <button> COMPRAR </button>
                     </Link>
@@ -58,8 +61,6 @@ export default function ItemDetail({product}){
                         onAdd={onAddTotal}
                         total={total}
                     />
-                    
-                    <p> {total} </p>
                 </div>
             </Col>
         </Row>

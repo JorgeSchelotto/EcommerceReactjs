@@ -15,35 +15,35 @@ const  Counter = ({initial, max, min, onAdd, total}) => {
     };
 
 
-  
+    function clickAdd(){
+      onAdd(count)
+    }
 
     return (
       <>
-      <Container>
-      <Row>
-      <Col lg={4} md={6} xs={6}>
-
-        <div className="countContainer">
-          <div className="countContainerAction">
-            <h3>{count}</h3>
-            <div className="countContainerActionButtons">
-              <button disabled={(count <= min)} onClick={subtract}>-</button>
-              <button disabled={(count === max)} onClick={add} >+</button>
-            </div>
-            <div className="countContainerCartButton">
-              <button
-                disabled={(count <= 0) || (count > max) || total >= max }
-                onClick={() => onAdd(count)}
-              > ADD </button>
-              <br></br>
-              <span hidden={total<20}><small style={{fontSize:".5rem"}}> El limite son {max} unidades </small></span>
-            </div>
-          </div>
-        </div>
-        </Col>
-        </Row>
+        <Container>
+          <Row>
+            <Col lg={4} md={6} xs={6}>
+              <div className="countContainer">
+                <div className="countContainerAction">
+                  <h3>{count}</h3>
+                  <div className="countContainerActionButtons">
+                    <button disabled={(count <= min)} onClick={subtract}>-</button>
+                    <button disabled={(count === max)} onClick={add} >+</button>
+                  </div>
+                  <div className="countContainerCartButton">
+                    <button
+                      disabled={(count <= 0) || (count > max) || total >= max}
+                      onClick={clickAdd}
+                    > ADD </button>
+                    <br></br>
+                    <span hidden={total < max}><small> El stock disponible es de {max} unidades </small></span>
+                  </div>
+                </div>
+              </div>
+            </Col>
+          </Row>
         </Container>
-        
       </>
     )
 }
