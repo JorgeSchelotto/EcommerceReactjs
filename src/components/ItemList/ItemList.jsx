@@ -12,19 +12,10 @@ export default function ItemList({products}){
         
         <Container>
             <Row>
-                <CardColumns md={5} xs={11}>
-                    {products.map(
-                        p => 
-                        <>     
-                        
-                            {/* <Col md={4} xs={12}>  */}
-                            
-                                <Item key={p.id} product={p} />
-                            
-                            {/* </Col> */}
-                        
-                        </>
-                    )}
+                <CardColumns md={5} xs={12}>
+
+                    {products.map( p =>  <Item key={p.id} product={p} /> )}
+
                 </CardColumns>
             </Row>
         </Container>

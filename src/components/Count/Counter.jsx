@@ -23,7 +23,7 @@ const  Counter = ({initial, max, min, onAdd, total}) => {
       <>
         <Container>
           <Row>
-            <Col lg={4} md={6} xs={6}>
+            <Col lg={6} md={6} xs={12}>
               <div className="countContainer">
                 <div className="countContainerAction">
                   <h3>{count}</h3>

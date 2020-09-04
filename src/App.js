@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 import Home from './containers/Home';
-import NavDos from './components/Navbar/NavVerDos';
+import NavDos from './components/navbar/NavVerDos';
 import {BrowserRouter, Switch, Route} from 'react-router-dom';
 // import ItemDetail from "./components/ItemDetail/ItemDetail"
 import ItemDetailContainer from './components/ItemDetailContainer/ItemDetailContainer';

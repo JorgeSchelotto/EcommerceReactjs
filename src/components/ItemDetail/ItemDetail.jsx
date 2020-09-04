@@ -4,8 +4,16 @@ import { Link } from 'react-router-dom';
 import { Row, Col } from 'react-bootstrap';
 
 import Counter from '../Count/Counter';
+import { cartContext, useCarteContext } from '../../Context/cartContext';
 
-
+function PruebaContex(){
+    const name = useCarteContext();
+    console.log(name)
+    return (
+    <p> Hello {name} </p>
+    
+    )
+}
 
 
 export default function ItemDetail({product}){
@@ -24,6 +32,7 @@ export default function ItemDetail({product}){
     function onAddTotal(count) {
         setTotal((total + count) >= max ? total = max : total + count)
     }
+
    
 
 
@@ -62,8 +71,12 @@ export default function ItemDetail({product}){
                         total={total}
                     />
                 </div>
+                <cartContext.Provider value={total}>
+                    <PruebaContex />
+                </cartContext.Provider>
             </Col>
         </Row>
+
         </>
         
     )
