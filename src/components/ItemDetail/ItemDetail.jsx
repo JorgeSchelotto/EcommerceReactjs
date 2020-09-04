@@ -4,20 +4,13 @@ import { Link } from 'react-router-dom';
 import { Row, Col } from 'react-bootstrap';
 
 import Counter from '../Count/Counter';
-import { cartContext, useCarteContext } from '../../Context/cartContext';
-
-function PruebaContex(){
-    const name = useCarteContext();
-    console.log(name)
-    return (
-    <p> Hello {name} </p>
-    
-    )
-}
+import { useCartContext, CacheProvider } from '../../Context/cartContext';
 
 
-export default function ItemDetail({product}){
 
+
+export default function ItemDetail({ product }) {
+    const {cache, addToCache, isInCache, cacheSize, cleanCache} = useCartContext();
     let [total, setTotal] = useState(0);
     const min = 1;
     const max = product.stock
@@ -27,57 +20,61 @@ export default function ItemDetail({product}){
         } else {
             console.log('No threshold reached.');
         }
+
+        return ( window.stopPropagation )
+
     }, [total]);
 
     function onAddTotal(count) {
         setTotal((total + count) >= max ? total = max : total + count)
     }
 
-   
+
 
 
     return (
-        
+
         <>
             <Row>
                 <Col xs={12} md={8}>
-                <Link to="/"> <button> Volver </button> </Link>
-                <div
-                    style={{ margin:'auto' }}
-                >
-                    <p>Nombre: {product.name}</p>
-                    <p>Stock: {product.stock}</p>
-                    <p>Descripcion: {product.description}</p>
-                </div>
+                    <Link to="/"> <button> Volver </button> </Link>
+                    <div
+                        style={{ margin: 'auto' }}
+                    >
+                        <p>Nombre: {product.name}</p>
+                        <p>Stock: {product.stock}</p>
+                        <p>Descripcion: {product.description}</p>
+                    </div>
 
-                <div>
-                    <p> 
-                        <span>Total </span> 
-                        <span>{total ? total : '' }</span>
-                    </p>
-                    <Link to="/shoppingCart">
-                        <button> COMPRAR </button>
-                    </Link>
-                </div>
-            </Col>
+                    <div>
+                        <p>
+                            <span>Total </span>
+                            <span>{total ? total : ''}</span>
+                        </p>
+                        <CacheProvider value={[]}>
+                            <Link to="/shoppingCart">
+                                <button onClick={alert(product.name, total)}> COMPRAR </button>
+                            </Link>
+                        </CacheProvider>
 
-            <Col xs={12} md={4}>
-                <div>
-                    <Counter
-                        initial={1}
-                        min={min}
-                        max={product.stock}
-                        onAdd={onAddTotal}
-                        total={total}
-                    />
-                </div>
-                <cartContext.Provider value={total}>
-                    <PruebaContex />
-                </cartContext.Provider>
-            </Col>
-        </Row>
+                    </div>
+                </Col>
+
+                <Col xs={12} md={4}>
+                    <div>
+                        <Counter
+                            initial={1}
+                            min={min}
+                            max={product.stock}
+                            onAdd={onAddTotal}
+                            total={total}
+                        />
+                    </div>
+
+                </Col>
+            </Row>
 
         </>
-        
+
     )
 }

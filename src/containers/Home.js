@@ -4,7 +4,7 @@ import items from '../components/ItemList/mockProducts';
 import ItemList from '../components/ItemList/ItemList';
 // import ItemDetailContainer from '../components/ItemDetailContainer/ItemDetailContainer';
 import { Container, Row, Col } from 'react-bootstrap';
-import { getFirestone } from '../firebase/index';
+// import { getFirestone } from '../firebase/index';
 
 
 
@@ -14,8 +14,8 @@ function Home({ link, title, subtitle }) {
     
 
     useEffect(() => {
-        const db = getFirestone();
-        const itemsCollection = db.collection('items');
+        // const db = getFirestone();
+        // const itemsCollection = db.collection('items');
 
         const promProducts = new Promise((resolve, reject) => {
             setTimeout(() => {

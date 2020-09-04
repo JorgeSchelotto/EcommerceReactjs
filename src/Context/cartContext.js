@@ -4,9 +4,9 @@ import React, { useContext, useState } from 'react';
 export const cartContext = React.createContext(0);
 
 
-export const useCarteContext = () => useContext(cartContext);
+export const useCartContext = () => useContext(cartContext);
 
-export default function CacheProvider({ defaultValue = [], children }) {
+export function CacheProvider({ defaultValue = [], children }) {
     const [ cache, setCache ] = useState(defaultValue);
 
     function getFromCache(id) {
@@ -26,7 +26,11 @@ export default function CacheProvider({ defaultValue = [], children }) {
         setCache([ ...cache, obj ]);
     }
 
-    return <cartContext.Provider value={{ cache, addToCache, isInCache, cacheSize: cache.length}}>
+    function cleanCache() {
+        setCache([]);
+    }
+
+    return <cartContext.Provider value={{ cache, addToCache, isInCache, cacheSize: cache.length, cleanCache }}>
         {children}
     </cartContext.Provider>
 }

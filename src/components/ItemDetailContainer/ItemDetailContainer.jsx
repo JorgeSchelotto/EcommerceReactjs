@@ -18,7 +18,7 @@ export default function ItemDetailContainer(){
         const prod = new Promise((resolve) =>{
             setTimeout(()=>{
                 resolve(itemList)
-            }, 1000)
+            }, )
         });
 
         prod.then(resolve => {

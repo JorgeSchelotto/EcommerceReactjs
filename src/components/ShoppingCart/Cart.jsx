@@ -2,7 +2,7 @@ import React from 'react';
 import './Cart.css';
 import { Container, Row, Col } from 'react-bootstrap';
 
-import { cartContext, useCarteContext } from '../../Context/cartContext';
+import { cartContext, useCartContext } from '../../Context/cartContext';
 
 
 
@@ -11,7 +11,7 @@ import { cartContext, useCarteContext } from '../../Context/cartContext';
 
 export default function Cart(){
 
-    const total = useCarteContext();
+    const total = useCartContext();
 
     return (
         
