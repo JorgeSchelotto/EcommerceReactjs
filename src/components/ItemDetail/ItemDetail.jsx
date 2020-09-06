@@ -6,14 +6,38 @@ import { Row, Col } from "react-bootstrap";
 import Counter from "../Count/Counter";
 import { useCartContext, CacheProvider } from "../../Context/cartContext";
 
+
+function BuyButton({product, total}) {
+    const {
+        cache,
+        addToCache,
+
+      } = useCartContext();
+
+
+      useEffect(() => {
+        alert(cache);
+    
+      }, [cache])
+
+      
+  function clickBuy(event) {
+    event.stopPropagation();
+    addToCache({ product: product, total: total });
+  }
+
+  return(
+    //<Link to="/shoppingCart">
+        <button onClick={clickBuy}> COMPRAR </button>
+    //</Link>
+  )
+
+
+
+
+}
+
 export default function ItemDetail({ product }) {
-  const {
-    cache,
-    addToCache,
-    isInCache,
-    cacheSize,
-    cleanCache,
-  } = useCartContext();
 
   let [total, setTotal] = useState(0);
   const min = 1;
@@ -23,11 +47,6 @@ export default function ItemDetail({ product }) {
     setTotal(total + count >= max ? (total = max) : total + count);
   }
 
-  function clickBuy(event) {
-    event.stopPropagation();
-    alert(product);
-    addToCache({ product: product, total: total });
-  }
 
   return (
     <>
@@ -47,10 +66,8 @@ export default function ItemDetail({ product }) {
               <span>Total </span>
               <span>{total ? total : ""}</span>
             </p>
-            <CacheProvider value={[]}>
-              <Link to="/shoppingCart">
-                <button onClick={clickBuy}> COMPRAR </button>
-              </Link>
+            <CacheProvider>
+                <BuyButton prod={product} total={total}/>
             </CacheProvider>
           </div>
         </Col>
