@@ -47,7 +47,6 @@ function Home({ link, title, subtitle }) {
                         <div>
                             {loading && <p>Loading...</p>}
                             <ItemList products={products} />
-                            {/* <ItemDetailContainer /> */}
                         </div>
                     </Col>
                 </Row>

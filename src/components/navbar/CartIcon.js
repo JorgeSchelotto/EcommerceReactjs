@@ -1,13 +1,30 @@
-import React from 'react';
-import shopingCart from './assets/shoppingCart.png';
+import React, {useEffect, useState} from 'react';
+import { Cart3 } from 'react-bootstrap-icons';
+import { useCartContext } from "../../Context/cartContext";
 
 
-function CartIcon({path}){
+function CartIcon(){
+    const {
+      cache
+      } = useCartContext();
+      const [total, setTotal] = useState();
 
-    return(                     
-    <a href={path}>
-        <img className="shoppingCart" src={shopingCart} alt="Shopping Kart" title="Shopping Kart"></img>
-    </a>
+
+      useEffect(() => {
+  
+        setTotal(cache.reduce((sum, value) => (typeof value.total === 'number' ? sum + value.total : sum), 0));
+
+    
+      }, [cache])
+
+    
+
+
+    return(         
+      <>            
+        <Cart3 color="gray" disabled />
+        {total ? <small> {total} </small> : <small>0</small> }
+      </>
     )
 }
 

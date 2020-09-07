@@ -9,7 +9,8 @@
         {id:'128', name:'Remera Eterna Inocencia', description:'Negra estampa fucsia.', stock: 10},
         {id:'129', name:'Campera algodon', description:'Tela gruesa.', stock: 10},
         {id:'130', name:'Gorra trucker Madball', description:'Varios colores.', stock: 10},
-        {id:'131', name:'Gorra trucker Madball', description:'Varios colores.', stock: 10},]
+        {id:'131', name:'Gorra trucker Madball', description:'Varios colores.', stock: 10},
+        {id:'132', name:'Gorra trucker Federica', description:'Varios colores.', stock: 10},]
 
 
 export default products;

@@ -6,7 +6,8 @@ import Button from 'react-bootstrap/Button';
 import { Link } from 'react-router-dom';
 
 import logo from './assets/logoExtremo.png'
-import { Cart3 } from 'react-bootstrap-icons';
+
+import CartIcon from './CartIcon'
  
 import './navbar.css';
 
@@ -40,7 +41,7 @@ export default function NavDos() {
           </Nav>
           <Nav>
             <Navbar.Brand >
-              <Link to="/shoppingCart"><Cart3 color="gray" disabled /></Link>
+              <Link to="/shoppingCart"><CartIcon/></Link>
             </Navbar.Brand>
             <Button variant="outline-secondary"
             style={ { margin: '.25em' }}

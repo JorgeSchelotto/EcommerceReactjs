@@ -1,20 +1,25 @@
-import React from "react";
+import React, {useEffect} from "react";
 import "./Cart.css";
 import { Container, Row, Col } from "react-bootstrap";
 
-import { useCartContext, CacheProvider } from "../../Context/cartContext";
+import { useCartContext } from "../../Context/cartContext";
 
 
 export function CacheView(){
     const {cache, cacheSize} = useCartContext()
 
+    useEffect(() => {
+  
+    }, [cache])
+
 
     return (
         <>
             {cacheSize > 0 ? (
-                <p> Total: {cacheSize}</p>
+                cache.map(p =>  <div><span> {p.item.name} Cantidad: {p.total} </span></div> )
+                
             ) : (
-                <strong>No se cargo nada al carrito. Items: {cacheSize} </strong>
+                <strong>No se cargo nada al carrito. </strong>
             )}
 
         </>
@@ -30,9 +35,7 @@ export default function Cart() {
       <Row>
         <Col xs={10} md={5}>
           <h1>Carrito de compras</h1>
-            <CacheProvider>
-                <CacheView/>
-            </CacheProvider>
+          <CacheView/>
         </Col>
       </Row>
     </Container>

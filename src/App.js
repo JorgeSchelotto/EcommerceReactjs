@@ -6,6 +6,7 @@ import {BrowserRouter, Switch, Route} from 'react-router-dom';
 // import ItemDetail from "./components/ItemDetail/ItemDetail"
 import ItemDetailContainer from './components/ItemDetailContainer/ItemDetailContainer';
 import Cart from './components/ShoppingCart/Cart'
+import { CacheProvider } from "./Context/cartContext";
 
 
 function App() {
@@ -18,11 +19,13 @@ function App() {
 
 
       <BrowserRouter>
+      <CacheProvider>
         <header className="App-header">
           <NavDos />
         </header>
         <Switch>
           <Route exact path="/">
+          
             <Home link={link} title={title} subtitle={subtitle}/>
           </Route>
           <Route path="/item/:id/detail">
@@ -32,6 +35,7 @@ function App() {
             <Cart />
           </Route>
         </Switch>
+      </CacheProvider>
       </BrowserRouter>
 
 

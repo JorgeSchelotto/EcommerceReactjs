@@ -4,32 +4,29 @@ import { Link } from "react-router-dom";
 import { Row, Col } from "react-bootstrap";
 
 import Counter from "../Count/Counter";
-import { useCartContext, CacheProvider } from "../../Context/cartContext";
+import { useCartContext } from "../../Context/cartContext";
 
 
-function BuyButton({product, total}) {
+function BuyButton({prod, total}) {
     const {
         cache,
         addToCache,
-
       } = useCartContext();
 
 
       useEffect(() => {
-        alert(cache);
     
       }, [cache])
 
       
   function clickBuy(event) {
     event.stopPropagation();
-    addToCache({ product: product, total: total });
+    addToCache({ item: prod, total: total });
   }
 
   return(
-    //<Link to="/shoppingCart">
-        <button onClick={clickBuy}> COMPRAR </button>
-    //</Link>
+    
+        <button onClick={clickBuy}> AGREGAR AL CARRITO </button>
   )
 
 
@@ -66,9 +63,9 @@ export default function ItemDetail({ product }) {
               <span>Total </span>
               <span>{total ? total : ""}</span>
             </p>
-            <CacheProvider>
+            {/* <Link to="/shoppingCart">  */}
                 <BuyButton prod={product} total={total}/>
-            </CacheProvider>
+            {/* </Link> */}
           </div>
         </Col>
 
