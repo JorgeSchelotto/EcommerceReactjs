@@ -1,41 +1,47 @@
-import React, {useEffect} from "react";
+import React, { useEffect } from "react";
 import "./Cart.css";
 import { Container, Row, Col } from "react-bootstrap";
-
+import { Link } from "react-router-dom";
 import { useCartContext } from "../../Context/cartContext";
 
 
-export function CacheView(){
-    const {cache, cacheSize} = useCartContext()
+export function CacheView() {
+  const { cache, cacheSize } = useCartContext()
 
-    useEffect(() => {
-  
-    }, [cache])
+  useEffect(() => {
+
+  }, [cache])
 
 
-    return (
-        <>
-            {cacheSize > 0 ? (
-                cache.map(p =>  <div><span> {p.item.name} Cantidad: {p.total} </span></div> )
-                
-            ) : (
-                <strong>No se cargo nada al carrito. </strong>
-            )}
+  return (
 
-        </>
-    )
+    <>
+
+      <p>
+        {cacheSize > 0 ? (
+          cache.map(p => <div><span> {p.item.name} Cantidad: {p.total} </span></div>)
+
+        ) : (
+            <strong>No se cargaron productos al carrito. </strong>
+          )}
+      </p>
+      <Link to="/">
+        <button> Volver </button>
+      </Link>
+    </>
+  )
 }
 
 
 export default function Cart() {
-  
+
 
   return (
     <Container>
       <Row>
-        <Col xs={10} md={5}>
+        <Col xs={12} md={12}>
           <h1>Carrito de compras</h1>
-          <CacheView/>
+          <CacheView />
         </Col>
       </Row>
     </Container>
