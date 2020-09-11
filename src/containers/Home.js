@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import Title from '../components/title';
-import items from '../components/ItemList/mockProducts';
 import ItemList from '../components/ItemList/ItemList';
 // import ItemDetailContainer from '../components/ItemDetailContainer/ItemDetailContainer';
 import { Container, Row, Col } from 'react-bootstrap';
-// import { getFirestone } from '../firebase/index';
+import { getFirestore } from '../firebase/index';
 
 
 
@@ -13,23 +12,42 @@ function Home({ link, title, subtitle }) {
     const [loading, setLoading] = useState(true);
     
 
+    // useEffect(() => {
+    //     // const db = getFirestone();
+    //     // const itemsCollection = db.collection('items');
+
+    //     const promProducts = new Promise((resolve, reject) => {
+    //         setTimeout(() => {
+    //             resolve(items);
+    //         }, 3000);
+    //       });
+
+    //     promProducts.then(resolve => {
+    //     setProducts(resolve); 
+    //     setLoading(false); 
+    //     });
+
+
+    // }, []);
+
+
     useEffect(() => {
-        // const db = getFirestone();
-        // const itemsCollection = db.collection('items');
+        
+        const db = getFirestore();
+        const itemCollection = db.collection("items")
 
-        const promProducts = new Promise((resolve, reject) => {
-            setTimeout(() => {
-                resolve(items);
-            }, 3000);
-          });
+        itemCollection.get().then((querySnapshot) => {
+            if (querySnapshot.size === 0){
+                console.log('No results!');
 
-        promProducts.then(resolve => {
-        setProducts(resolve); 
-        setLoading(false); 
-        });
-
-
-    }, []);
+            }
+            setProducts(querySnapshot.docs.map(doc => doc.data()));
+        }).catch((error) => {
+            console.log("Error searching items: ", error)
+        }).finally(() => {
+            setLoading(false);
+        })
+}, []);
 
 
 

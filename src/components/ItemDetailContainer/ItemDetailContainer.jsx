@@ -3,6 +3,7 @@ import './ItemDetailContainer.css';
 import itemList from '../ItemList/mockProducts';
 import ItemDetail from '../ItemDetail/ItemDetail';
 import {  useParams } from 'react-router-dom';
+import { getFirestore } from '../../firebase/index';
 
 
 
