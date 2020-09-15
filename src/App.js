@@ -24,10 +24,15 @@ function App() {
           <NavDos />
         </header>
         <Switch>
+        
           <Route exact path="/">
-          
             <Home link={link} title={title} subtitle={subtitle}/>
           </Route>
+
+          <Route exact path="/categories/:categoryId">
+            <Home link={link} title={title} subtitle={subtitle}/>
+          </Route>
+
           <Route path="/item/:id/detail">
             <ItemDetailContainer />
           </Route>

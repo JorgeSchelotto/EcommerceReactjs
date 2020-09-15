@@ -14,7 +14,7 @@ export default function Item({product}){
             <Card style={{ margin: '1em .5em 1em .5em ' }}>
                 <Card.Img variant="top" src="https://via.placeholder.com/150x100.png" />
                 <Card.Body>
-                    <Card.Title>{product.name}</Card.Title>
+                    <Card.Title>{product.title}</Card.Title>
                     <Card.Text>
                         {product.description}
                     </Card.Text>

@@ -53,9 +53,10 @@ export default function ItemDetail({ product }) {
             <button> Volver </button>
           </Link>
           <div style={{ margin: "auto" }}>
-            <p>Nombre: {product.name}</p>
+            <p>Nombre: {product.title}</p>
             <p>Stock: {product.stock}</p>
             <p>Descripcion: {product.description}</p>
+            <p>Precio: {product.price}</p>
           </div>
 
           <div>

@@ -14,9 +14,9 @@ export default function ItemList({products}){
             <Row>
                 
                     {products.map( p =>  
-                        <Col md={4} xs={12}> 
+                        <Col md={4} xs={12} key={p.id}> 
                             <CardGroup>
-                                <Item key={p.id} product={p}/>
+                                <Item product={p}/>
                             </CardGroup> 
                         </Col> 
                     )}

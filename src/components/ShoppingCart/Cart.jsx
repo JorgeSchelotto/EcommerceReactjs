@@ -19,7 +19,7 @@ export function CacheView() {
 
       <p>
         {cacheSize > 0 ? (
-          cache.map(p => <div><span> {p.item.name} Cantidad: {p.total} </span></div>)
+          cache.map(p => <div><span> {p.item.title} Cantidad: {p.total} </span></div>)
 
         ) : (
             <strong>No se cargaron productos al carrito. </strong>

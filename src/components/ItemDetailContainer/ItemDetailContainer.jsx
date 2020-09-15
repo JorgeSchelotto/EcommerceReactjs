@@ -14,25 +14,48 @@ export default function ItemDetailContainer(){
     const [selectedProduct, setSelectedProduct] = useState(null);
     const [loading, setLoading] = useState(true);
 
+    
+    // Ejemplo con mocks
+    // useEffect(() => {
+        
+    //     const prod = new Promise((resolve) =>{
+    //         setTimeout(()=>{
+    //             resolve(itemList)
+    //         }, )
+    //     });
+
+    //     prod.then(resolve => {
+    //         console.log(resolve);
+    //         const product = resolve.find( p => p.id === id );
+    //         setSelectedProduct(product);
+    //         setLoading(false);
+  
+    //     });
+    //     console.log('Mounted ItemDetail id: ', id);
+    //     return () => {
+    //         console.log('Dismounted ItemDetail')
+    //     };
+    // }, [id]);
+
     useEffect(() => {
         
-        const prod = new Promise((resolve) =>{
-            setTimeout(()=>{
-                resolve(itemList)
-            }, )
-        });
+        const db = getFirestore();
+        const itemCollection = db.collection("items")
+        const item = itemCollection.doc(id)
 
-        prod.then(resolve => {
-            console.log(resolve);
-            const product = resolve.find( p => p.id === id );
-            setSelectedProduct(product);
+        item.get().then((doc) => {
+            if (doc.size === 0){
+                console.log('No results!');
+                return
+            }
+
+            console.log('Item Found!');
+            setSelectedProduct({ id: doc.id, ...doc.data() });
+        }).catch((error) => {
+            console.log("Error searching items: ", error)
+        }).finally(() => {
             setLoading(false);
-  
-        });
-        console.log('Mounted ItemDetail id: ', id);
-        return () => {
-            console.log('Dismounted ItemDetail')
-        };
+        })
     }, [id]);
 
     

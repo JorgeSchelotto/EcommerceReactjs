@@ -11,7 +11,7 @@ function Home({ link, title, subtitle }) {
     const [products, setProducts] = useState([]);
     const [loading, setLoading] = useState(true);
     
-
+    // Ejemplo con mocks
     // useEffect(() => {
     //     // const db = getFirestone();
     //     // const itemsCollection = db.collection('items');
@@ -39,15 +39,17 @@ function Home({ link, title, subtitle }) {
         itemCollection.get().then((querySnapshot) => {
             if (querySnapshot.size === 0){
                 console.log('No results!');
-
+                return
             }
-            setProducts(querySnapshot.docs.map(doc => doc.data()));
+
+            console.log('Item Found!');
+            setProducts(querySnapshot.docs.map(doc => ({id: doc.id, ...doc.data()})));
         }).catch((error) => {
             console.log("Error searching items: ", error)
         }).finally(() => {
             setLoading(false);
         })
-}, []);
+    }, []);
 
 
 
