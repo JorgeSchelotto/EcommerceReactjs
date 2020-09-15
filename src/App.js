@@ -10,9 +10,7 @@ import { CacheProvider } from "./Context/cartContext";
 
 
 function App() {
-  const link = "https://reactjs.org";
-  const title ='Some content';
-  const subtitle ='Another content';
+  const categories =[{categoryid: "Remeras"}, {categoryid: "Gorras"}, {categoryid: "Busos" }]
 
   return (
     <div className="App">
@@ -21,16 +19,16 @@ function App() {
       <BrowserRouter>
       <CacheProvider>
         <header className="App-header">
-          <NavDos />
+          <NavDos categories={categories} />
         </header>
         <Switch>
-        
+
           <Route exact path="/">
-            <Home link={link} title={title} subtitle={subtitle}/>
+            <Home/>
           </Route>
 
-          <Route exact path="/categories/:categoryId">
-            <Home link={link} title={title} subtitle={subtitle}/>
+          <Route path="/categorie/:categoryid">
+            <Home/>
           </Route>
 
           <Route path="/item/:id/detail">

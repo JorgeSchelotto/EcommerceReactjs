@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import './ItemDetailContainer.css';
-import itemList from '../ItemList/mockProducts';
+// import itemList from '../ItemList/mockProducts';
 import ItemDetail from '../ItemDetail/ItemDetail';
 import {  useParams } from 'react-router-dom';
 import { getFirestore } from '../../firebase/index';
@@ -14,7 +14,7 @@ export default function ItemDetailContainer(){
     const [selectedProduct, setSelectedProduct] = useState(null);
     const [loading, setLoading] = useState(true);
 
-    
+
     // Ejemplo con mocks
     // useEffect(() => {
         

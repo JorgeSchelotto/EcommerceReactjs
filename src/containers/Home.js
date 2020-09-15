@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import Title from '../components/title';
 import ItemList from '../components/ItemList/ItemList';
 // import ItemDetailContainer from '../components/ItemDetailContainer/ItemDetailContainer';
 import { Container, Row, Col } from 'react-bootstrap';
 import { getFirestore } from '../firebase/index';
+import { useParams } from 'react-router-dom';
 
 
 
-function Home({ link, title, subtitle }) {
+function Home() {
     const [products, setProducts] = useState([]);
     const [loading, setLoading] = useState(true);
     
@@ -30,11 +30,11 @@ function Home({ link, title, subtitle }) {
 
     // }, []);
 
-
+    const  { categorie = undefined } = useParams();
     useEffect(() => {
         
         const db = getFirestore();
-        const itemCollection = db.collection("items")
+        const itemCollection =  (!categorie) ? db.collection("items").limit(20) : db.where('categoryid', '==', categorie).limit(20);
 
         itemCollection.get().then((querySnapshot) => {
             if (querySnapshot.size === 0){
@@ -49,7 +49,8 @@ function Home({ link, title, subtitle }) {
         }).finally(() => {
             setLoading(false);
         })
-    }, []);
+        console.log(categorie)
+    }, [categorie]);
 
 
 
@@ -58,10 +59,6 @@ function Home({ link, title, subtitle }) {
     return (
         <>
             <Container>
-                <Row className="justify-content-md-center">
-                    <Title style={{ margin: "auto" }} title={title} subtitle={subtitle} />
-                </Row>
-
                 <Row>
                     <Col>
                         <div>

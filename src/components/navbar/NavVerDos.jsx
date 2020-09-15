@@ -13,7 +13,7 @@ import './navbar.css';
 
 
 
-export default function NavDos() {
+export default function NavDos({ categories }) {
   return (
     <>
       <Navbar collapseOnSelect expand="md" bg="dark" variant="dark">
@@ -31,12 +31,12 @@ export default function NavDos() {
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="mr-auto">
             <Nav.Link >Nosotrxs</Nav.Link>
-            <Nav.Link >Productos</Nav.Link>
+            <Nav.Link to={"/"} >Productos</Nav.Link>
             <NavDropdown title="Categorias" id="collasible-nav-dropdown" variant="secondary">
-              <NavDropdown.Item >Remeras</NavDropdown.Item>
-              <NavDropdown.Item >Busos</NavDropdown.Item>
+              {categories.map(cat =>  <NavDropdown.Item as={Link} to={`/categorie/${cat.categoryid}`} key={cat.categoryid}>{cat.categoryid}</NavDropdown.Item>)}
+              {/* <NavDropdown.Item >Busos</NavDropdown.Item>
               <NavDropdown.Item >Camperas</NavDropdown.Item>
-              <NavDropdown.Item >Gorras</NavDropdown.Item>
+              <NavDropdown.Item >Gorras</NavDropdown.Item> */}
             </NavDropdown>
           </Nav>
           <Nav>
