@@ -9,9 +9,34 @@ import { useParams } from 'react-router-dom';
 
 function Home() {
     const [products, setProducts] = useState([]);
-    const [loading, setLoading] = useState(true);
-    
-    // Ejemplo con mocks
+    const [loading, setLoading] = useState(true);  
+    const  { categoryid = undefined } = useParams();
+
+    useEffect(() => {
+        
+        const db = getFirestore();
+        const itemCollection =  db.collection("items"); 
+        let query = categoryid ? itemCollection.where('categoryid', '==', categoryid).limit(20): itemCollection ;
+        
+
+        query.get().then((querySnapshot) => {
+            if (querySnapshot.size === 0){
+                console.log('No results!');
+                return
+            }
+
+            console.log('Item Found!');
+            setProducts(querySnapshot.docs.map(doc => ({id: doc.id, ...doc.data()})));
+        }).catch((error) => {
+            console.log("Error searching items: ", error)
+        }).finally(() => {
+            setLoading(false);
+        })
+        console.log(categoryid)
+    }, [categoryid]);
+
+
+        // Ejemplo con mocks
     // useEffect(() => {
     //     // const db = getFirestone();
     //     // const itemsCollection = db.collection('items');
@@ -29,28 +54,6 @@ function Home() {
 
 
     // }, []);
-
-    const  { categorie = undefined } = useParams();
-    useEffect(() => {
-        
-        const db = getFirestore();
-        const itemCollection =  (!categorie) ? db.collection("items").limit(20) : db.where('categoryid', '==', categorie).limit(20);
-
-        itemCollection.get().then((querySnapshot) => {
-            if (querySnapshot.size === 0){
-                console.log('No results!');
-                return
-            }
-
-            console.log('Item Found!');
-            setProducts(querySnapshot.docs.map(doc => ({id: doc.id, ...doc.data()})));
-        }).catch((error) => {
-            console.log("Error searching items: ", error)
-        }).finally(() => {
-            setLoading(false);
-        })
-        console.log(categorie)
-    }, [categorie]);
 
 
 
