@@ -20,7 +20,7 @@ export function CacheView() {
 
       <p>
         {cacheSize > 0 ? (
-          cache.map(p => <div><span> {p.item.title} Cantidad: {p.total} </span></div>)
+          cache.map(p => <div key={p.item.id,p.item.title}><span> {p.item.title} Cantidad: {p.total} </span></div>)
 
         ) : (
             <strong>No se cargaron productos al carrito. </strong>
@@ -34,6 +34,12 @@ export function CacheView() {
 
 export default function Cart() {
 
+  const { cache, cacheSize } = useCartContext()
+
+  useEffect(() => {
+
+  }, [cache])
+
 
   return (
     <Container>
@@ -42,8 +48,9 @@ export default function Cart() {
           <h1>Carrito de compras</h1>
           <CacheView />
         </Col>
-        <Col>
-          <CheckOutForm/>
+        <Col xs={12} md={6}>
+        { cacheSize > 0 ?
+          <CheckOutForm/> : <div></div>}
         </Col>
       </Row>
       <Link to="/">
