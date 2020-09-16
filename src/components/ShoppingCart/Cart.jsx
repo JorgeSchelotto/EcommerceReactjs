@@ -3,6 +3,7 @@ import "./Cart.css";
 import { Container, Row, Col } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { useCartContext } from "../../Context/cartContext";
+import CheckOutForm from '../CheckOutForm/CheckOutForm';
 
 
 export function CacheView() {
@@ -25,9 +26,7 @@ export function CacheView() {
             <strong>No se cargaron productos al carrito. </strong>
           )}
       </p>
-      <Link to="/">
-        <button> Volver </button>
-      </Link>
+
     </>
   )
 }
@@ -43,7 +42,13 @@ export default function Cart() {
           <h1>Carrito de compras</h1>
           <CacheView />
         </Col>
+        <Col>
+          <CheckOutForm/>
+        </Col>
       </Row>
+      <Link to="/">
+          <button> Volver </button>
+        </Link>
     </Container>
   );
 }

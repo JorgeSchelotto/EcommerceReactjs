@@ -16,7 +16,8 @@ function Home() {
         
         const db = getFirestore();
         const itemCollection =  db.collection("items"); 
-        let query = categoryid ? itemCollection.where('categoryid', '==', categoryid).limit(20): itemCollection ;
+        let query = categoryid ? itemCollection
+        .where('categoryid', '==', categoryid).limit(20): itemCollection ;
         
 
         query.get().then((querySnapshot) => {

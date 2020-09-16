@@ -5,9 +5,10 @@ import Nav from 'react-bootstrap/Nav';
 import Button from 'react-bootstrap/Button';
 import { Link } from 'react-router-dom';
 
-import logo from './assets/logoExtremo.png'
 
-import CartIcon from './CartIcon'
+import logo from './assets/logoExtremo.png';
+
+import CartIcon from './CartIcon';
  
 import './navbar.css';
 
