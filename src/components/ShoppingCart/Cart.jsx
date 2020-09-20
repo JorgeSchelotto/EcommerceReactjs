@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import "./Cart.css";
 import { Container, Row, Col } from "react-bootstrap";
 import { Link } from "react-router-dom";
@@ -11,7 +11,7 @@ import CheckOutForm from '../CheckOutForm/CheckOutForm';
 
 
 export function CacheView() {
-  const { cache, cacheSize, price } = useCartContext()
+  const { cache, cacheSize } = useCartContext()
 
   useEffect(() => {
 
@@ -21,10 +21,8 @@ export function CacheView() {
   return (
 
     <>
-
-
         {cacheSize > 0 ? (
-          cache.map(p => <div key={p.item.id,p.item.title}><span> {p.item.title} Cantidad: {p.total} </span></div>)
+          cache.map(p => <div key={p.item.id + p.item.title}><span> {p.item.title} Cantidad: {p.total} </span></div>)
         ) : (
             <strong>No se cargaron productos al carrito. </strong>
           )}
@@ -36,7 +34,7 @@ export function CacheView() {
 
 export default function Cart() {
 
-  const { cache, cacheSize, price } = useCartContext()
+  const { cache, cacheSize } = useCartContext()
 
 
   useEffect(() => {
@@ -48,19 +46,19 @@ export default function Cart() {
 
   return (
     <Container>
-      <Row>
+      <Row className="justify-content-md-center">
         <Col xs={12} md={12}>
           <h1>Carrito de compras</h1>
           <CacheView />
         </Col>
-        <Col xs={12} md={{span:6, offset: 3}}>
+        <Col xs={12} md={8}>
         { cacheSize > -1 ?
-          <CheckOutForm/> : <div></div>}
-        </Col>
-      </Row>
-      <Link to="/">
+          <CheckOutForm/> : ''}
+          <Link to="/">
           <button> Volver </button>
         </Link>
+        </Col>
+      </Row>
     </Container>
   );
 }

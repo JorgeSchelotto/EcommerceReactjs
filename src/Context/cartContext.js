@@ -27,7 +27,7 @@ export function CacheProvider({ defaultValue = [], children }) {
     }
 
     function price(){
-        return cartContext.reduce((prev, next) =>
+        return cache.reduce((prev, next) =>
         (prev + (next.total * next.price)), 0)
     }
 
