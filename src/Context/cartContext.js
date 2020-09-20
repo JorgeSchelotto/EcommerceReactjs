@@ -26,7 +26,12 @@ export function CacheProvider({ defaultValue = [], children }) {
         setCache([]);
     }
 
-    return <cartContext.Provider value={{ cache, addToCache, isInCache, cacheSize: cache.length, cleanCache }}>
+    function price(){
+        return cartContext.reduce((prev, next) =>
+        (prev + (next.total * next.price)), 0)
+    }
+
+    return <cartContext.Provider value={{ cache, price,addToCache, isInCache, cacheSize: cache.length, cleanCache }}>
         {children}
     </cartContext.Provider>
 }
