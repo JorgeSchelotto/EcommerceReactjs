@@ -18,6 +18,7 @@ export function CacheProvider({ defaultValue = [], children }) {
     }
 
     function addToCache(obj) {
+        
         const newItem = [...cache, obj];
         setCache(newItem);
     }
@@ -28,10 +29,16 @@ export function CacheProvider({ defaultValue = [], children }) {
 
     function price(){
         return cache.reduce((prev, next) =>
-        (prev + (next.total * next.price)), 0)
+        (prev + (next.item.price * next.total)), 0)
     }
 
-    return <cartContext.Provider value={{ cache, price,addToCache, isInCache, cacheSize: cache.length, cleanCache }}>
+    function deleteElement(id) {
+        if (isInCache(id)) {
+            cache.filter( e => e.id !== id)
+        }
+    }
+
+    return <cartContext.Provider value={{ cache, price,addToCache, isInCache, cacheSize: cache.length, cleanCache, deleteElement }}>
         {children}
     </cartContext.Provider>
 }

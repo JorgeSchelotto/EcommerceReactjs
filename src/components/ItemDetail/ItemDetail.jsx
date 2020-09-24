@@ -15,22 +15,20 @@ function BuyButton({prod, total}) {
 
 
       useEffect(() => {
-    
+        
       }, [cache])
+
 
       
   function clickBuy(event) {
     event.stopPropagation();
-    addToCache({ item: prod, total: total });
+    total<prod.total ? addToCache({ item: prod, total: total }) :  addToCache({ item: prod, total: prod.stock });
   }
 
   return(
     
-        <button onClick={clickBuy}> AGREGAR AL CARRITO </button>
+        <button onClick={clickBuy} disabled={total<=0 || total>=prod.stock}> AGREGAR AL CARRITO </button>
   )
-
-
-
 
 }
 
@@ -49,23 +47,26 @@ export default function ItemDetail({ product }) {
     <>
       <Row>
         <Col xs={12} md={8}>
-          <Link to="/">
-            <button> Volver </button>
-          </Link>
-          <div style={{ margin: "auto" }}>
+          
+          <div style={{ margin: "auto", paddingTop: "2rem" }}>
+            <img src="https://via.placeholder.com/500x350.png"></img>
             <p>Nombre: {product.title}</p>
-            <p>Stock: {product.stock}</p>
+            
             <p>Descripcion: {product.description}</p>
+            <p>Stock: {product.stock}</p>
             <p>Precio: {product.price}</p>
           </div>
 
           <div>
             <p>
-              <span>Total </span>
-              <span>{total ? total : ""}</span>
+              <span>Cantidad: </span>
+              <span>{total ? total : 0}</span>
             </p>
             {/* <Link to="/shoppingCart">  */}
-                <BuyButton prod={product} total={total}/>
+                <BuyButton prod={product} total={total} onAdd={onAddTotal}/>
+                <Link to="/">
+            <button> Volver </button>
+          </Link>
             {/* </Link> */}
           </div>
         </Col>

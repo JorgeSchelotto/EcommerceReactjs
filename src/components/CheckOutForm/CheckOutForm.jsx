@@ -27,7 +27,7 @@ function CheckOutForm() {
 
     // Creo orden de compra
     async function CreateOrder(event) {
-        event.preventDefault();
+        // event.preventDefault();
         const order = {
             buyer: buyer,
             items: cache,
