@@ -14,7 +14,9 @@ function CheckOutForm() {
         telefono: '',
     });
 
-    const { cache, price } = useCartContext()
+    const [id, setId] = useState(0);
+
+    const { cache, price, cleanCache } = useCartContext()
     // const [orderId, setOrderId] = useState('');
     const db = getFirestore();
     const orders = db.collection("orders");
@@ -27,7 +29,7 @@ function CheckOutForm() {
 
     // Creo orden de compra
     async function CreateOrder(event) {
-        // event.preventDefault();
+        event.preventDefault();
         const order = {
             buyer: buyer,
             items: cache,
@@ -36,14 +38,13 @@ function CheckOutForm() {
         }
         console.log("Order: " + order)
         try {
-            const {id} = await orders.add(order);
+            const orderId = await orders.add(order);
+            setId(orderId.id);
+            cleanCache();
+
         } catch (error) {
             console.log(error)
         }
-        // console.log("Order buyer: " + ' Email:  ' + order.buyer.email + ', Nombre: ' + order.buyer.nombre + ', Telefono: ' + order. buyer.telefono  )
-        // console.log("items: " + order.items  )
-        // console.log("Date: " + order.date  )
-        // console.log("total: " + order.total  )
     }
 
 
@@ -55,7 +56,8 @@ function CheckOutForm() {
     }
 
     return (
-        <Fragment>
+        <>
+        {id ? <strong>La order de compra se generó correctamente. Su identificador es: {id}</strong> : <span><Fragment>
             <Form onSubmit={CreateOrder}>
                 <Form.Group controlId="formBasicEmail" >
                     <Form.Label>Email</Form.Label>
@@ -77,7 +79,11 @@ function CheckOutForm() {
                     FINALIZAR COMPRA
             </Button>
             </Form>
-        </Fragment>
+            
+        </Fragment></span>}
+        </>
+
+        
     )
 }
 

@@ -21,20 +21,18 @@ export function CacheView() {
   }, [cache])
 
 
-  function deleteElem(p) {
-    console.log(p.id)
-    deleteElement(p.id);
+  function deleteElem(event, id) {
+    event.stopPropagation()
+    console.log(id)
+    deleteElement(id);
   }
 
 
   return (
 
     <>
-
-
-      
         {cacheSize > 0 ? (
-          <Table striped bordered hover variant="dark">
+          <Table striped bordered hover responsive="md" variant="dark">
             <thead>
               <tr>
                 <th>Producto</th>
@@ -48,7 +46,7 @@ export function CacheView() {
                 <td> {p.item.title}</td>
                 <td> {p.total} </td>
                 <td> ${p.total * p.item.price}.</td>
-                <td> <Button variant="outline-light" onClick={deleteElem}>BORRAR</Button> </td>
+                <td> <Button variant="outline-light" onClick={(event)=> deleteElem(event, p.item.id) }>BORRAR</Button> </td>
               </tr>)}
               <tr>
                 <td>Total</td>

@@ -14,13 +14,14 @@ export function CacheProvider({ defaultValue = [], children }) {
     }
 
     function isInCache(id) {
-        return id === undefined ? undefined : getFromCache !== undefined;
+        return cache.some(item => item.item.id === id);
     }
 
     function addToCache(obj) {
-        
+        if (!isInCache(obj.item.id)){
         const newItem = [...cache, obj];
         setCache(newItem);
+        }
     }
 
     function cleanCache() {
@@ -33,9 +34,8 @@ export function CacheProvider({ defaultValue = [], children }) {
     }
 
     function deleteElement(id) {
-        if (isInCache(id)) {
-            cache.filter( e => e.id !== id)
-        }
+        setCache(cache.filter( e => e.item.id !== id));
+
     }
 
     return <cartContext.Provider value={{ cache, price,addToCache, isInCache, cacheSize: cache.length, cleanCache, deleteElement }}>

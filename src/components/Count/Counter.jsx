@@ -3,44 +3,50 @@ import {Container, Row, Col} from 'react-bootstrap';
 import "./style.css";
 
 
-const  Counter = ({initial, max, min, onAdd, total}) => {
+
+const  Counter = ({initial, max, min, onAdd, onSubstract, total}) => {
     const [ count , setCount ] = useState(initial); // count es el estado y setCount la funcion para actualizar el estado
- 
-    function add(){
-      setCount( (!isNaN(parseFloat(count)) && isFinite(count)) ? (count < max ? count + 1: count): count )
-    };
-
-    function subtract(){
-      setCount( (!isNaN(parseFloat(count)) && isFinite(count)) ? (count > min ? count - 1: count): count )
-    };
-
 
     function clickAdd(){
       onAdd(count)
     }
 
+
+    function clickSubstract(){
+      onSubstract(count)
+    }
+ 
+    function add(event){
+      event.stopPropagation();
+      clickAdd();
+    };
+
+    function subtract(event){
+      event.stopPropagation();
+      clickSubstract();
+    };
+
+
+
+
     return (
       <>
         <Container>
           <Row>
-            <Col lg={6} md={6} xs={12}>
-              <div className="countContainer">
-                <div className="countContainerAction">
-                  <h3>{count}</h3>
+          <Col lg={12} md={12} xs={12}> 
+          <span>Cantidad: {total}</span>
+          </Col>
+          </Row>
+          <Row>
+            <Col lg={12} md={12} xs={12}>
                   <div className="countContainerActionButtons">
-                    <button disabled={(count <= min)} onClick={subtract}>-</button>
-                    <button disabled={(count === max)} onClick={add} >+</button>
+                    <button disabled={(total <= min)} onClick={(event) => subtract(event)}><svg stroke="currentColor" fill="currentColor" strokeWidth={0} viewBox="0 0 1024 1024" height="1em" width="1em"><path d="M512 64C264.6 64 64 264.6 64 512s200.6 448 448 448 448-200.6 448-448S759.4 64 512 64zm192 472c0 4.4-3.6 8-8 8H328c-4.4 0-8-3.6-8-8v-48c0-4.4 3.6-8 8-8h368c4.4 0 8 3.6 8 8v48z" /></svg></button>
+                    <button disabled={(total >= max)} onClick={(event) => add(event)} ><svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M512 64C264.6 64 64 264.6 64 512s200.6 448 448 448 448-200.6 448-448S759.4 64 512 64zm192 472c0 4.4-3.6 8-8 8H544v152c0 4.4-3.6 8-8 8h-48c-4.4 0-8-3.6-8-8V544H328c-4.4 0-8-3.6-8-8v-48c0-4.4 3.6-8 8-8h152V328c0-4.4 3.6-8 8-8h48c4.4 0 8 3.6 8 8v152h152c4.4 0 8 3.6 8 8v48z"></path></svg></button>
                   </div>
                   <div className="countContainerCartButton">
-                    <button
-                      disabled={(count <= 0) || (count > max) || total >= max}
-                      onClick={clickAdd}
-                    > ADD </button>
                     <br></br>
                     <span hidden={total < max}><small> El stock disponible es de {max} unidades </small></span>
                   </div>
-                </div>
-              </div>
             </Col>
           </Row>
         </Container>
