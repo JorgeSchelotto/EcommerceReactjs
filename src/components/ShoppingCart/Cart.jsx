@@ -85,7 +85,7 @@ export default function Cart() {
             <CacheView />
           </Col>
           <Col xs={12} md={8}>
-            {cacheSize > -1 ?
+            {cacheSize > 0 ?
               <CheckOutForm /> : ''}
             <Link to="/">
               <button> Volver </button>

@@ -10,6 +10,7 @@ function CheckOutForm() {
 
     const [buyer, setbuyer] = useState({
         email: '',
+        emailSegundo: '',
         nombre: '',
         telefono: '',
     });
@@ -61,10 +62,12 @@ function CheckOutForm() {
             <Form onSubmit={CreateOrder}>
                 <Form.Group controlId="formBasicEmail" >
                     <Form.Label>Email</Form.Label>
-                    <Form.Control type="email" placeholder="Email" onChange={handleInputChange} name="email" required />
-                    <Form.Text className="text-muted">
-                        <small>Nunca compartiremos tu email</small>
-                    </Form.Text>
+                    <Form.Control type="email" placeholder="Email" onChange={handleInputChange} name="email" required /> 
+                </Form.Group>
+
+                <Form.Group controlId="formBasicEmail">
+                    <Form.Label>Repetir Email</Form.Label>
+                    <Form.Control type="emailSegundo" placeholder="Ingresa nuevamente tu email" onChange={handleInputChange} name="emailSegundo" required />
                 </Form.Group>
 
                 <Form.Group controlId="formBasicNombre">
@@ -75,7 +78,7 @@ function CheckOutForm() {
                     <Form.Label>Telefono</Form.Label>
                     <Form.Control type="tel" placeholder="Telefono" onChange={handleInputChange} name="telefono" required />
                 </Form.Group>
-                <Button variant="primary" type="submit">
+                <Button variant="primary" type="submit" disabled={buyer.email !== buyer.emailSegundo || !buyer.email }>
                     FINALIZAR COMPRA
             </Button>
             </Form>

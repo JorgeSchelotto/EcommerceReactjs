@@ -42,7 +42,7 @@ export default function ItemDetailContainer(){
         const db = getFirestore();
         const itemCollection = db.collection("items")
         const item = itemCollection.doc(id)
-
+        
         item.get().then((doc) => {
             if (doc.size === 0){
                 console.log('No results!');
@@ -50,7 +50,11 @@ export default function ItemDetailContainer(){
             }
 
             console.log('Item Found!');
-            setSelectedProduct({ id: doc.id, ...doc.data() });
+            if (doc.exists === false){
+                setSelectedProduct(doc.exists)
+            } else {
+                setSelectedProduct({ id: doc.id, ...doc.data() });
+            }
         }).catch((error) => {
             console.log("Error searching items: ", error)
         }).finally(() => {
@@ -61,8 +65,9 @@ export default function ItemDetailContainer(){
     
     return (
         <>
-        {loading && <p>Loading...</p>}
-        {selectedProduct && <ItemDetail product={selectedProduct} />}
+        
+        {selectedProduct ? <ItemDetail product={selectedProduct} /> : selectedProduct === false && <strong> No se encontro el item</strong>  }
+        {console.log(selectedProduct)}
         
         
         </>

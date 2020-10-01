@@ -12,7 +12,8 @@ export default function Item({product}){
     return(
             <>
             <Card style={{ margin: '1em .5em 1em .5em ' }}>
-                <Card.Img variant="top" src="https://via.placeholder.com/150x100.png" />
+                <Card.Img variant="top" src={require(`../../assets/image/${product.imageid}`)} 
+                fluid={true}/>
                 <Card.Body>
                     <Card.Title>{product.title}</Card.Title>
                     <Card.Text>

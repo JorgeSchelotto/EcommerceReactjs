@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
 import "./ItemDetail.css";
 import { Link } from "react-router-dom";
-import { Row, Col } from "react-bootstrap";
+import { Row, Col, Image  } from "react-bootstrap";
 
 import Counter from "../Count/Counter";
 import { useCartContext } from "../../Context/cartContext";
+
 
 
 function BuyButton({ prod, total}) {
@@ -42,11 +43,11 @@ export default function ItemDetail({ product }) {
   let [total, setTotal] = useState(0);
   const min = 1;
 
-  function onAddTotal(count) {
+  function onAddTotal() {
     setTotal(total + 1);
   }
 
-  function onSubstractTotal(count) {
+  function onSubstractTotal() {
     setTotal(total - 1);
 
   }
@@ -58,10 +59,11 @@ export default function ItemDetail({ product }) {
         <Col xs={12} md={12}>
 
           <div style={{ margin: "auto", paddingTop: "2rem" }}>
-            <img src="https://via.placeholder.com/500x350.png"></img>
-            {console.log(product)}
+            <Image  src={require(`../../assets/image/${product.imageid}`)} fluid></Image>
+            <br></br>
+            <br></br>
+
             <p>Nombre: {product.title}</p>
-            <p>Id: {product.id}</p>
             <p>Descripcion: {product.description}</p>
             <p>Stock: {product.stock}</p>
             <p>Precio: {product.price}</p>
@@ -69,7 +71,6 @@ export default function ItemDetail({ product }) {
 
           <div>
                 <Counter
-                  initial={1}
                   min={min}
                   max={product.stock}
                   onAdd={onAddTotal}
