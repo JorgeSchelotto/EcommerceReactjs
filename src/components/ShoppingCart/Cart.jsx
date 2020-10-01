@@ -31,7 +31,7 @@ export function CacheView() {
   return (
 
     <>
-        {cacheSize > 0 ? (
+        {cacheSize > 0 && 
           <Table striped bordered hover responsive="md" variant="dark">
             <thead>
               <tr>
@@ -56,9 +56,7 @@ export function CacheView() {
               </tr>
             </tbody>
           </Table>
-        ) : (
-            <strong>No se cargaron productos al carrito. </strong>
-          )}
+        }
 
     </>
   )
@@ -67,7 +65,7 @@ export function CacheView() {
 
 export default function Cart() {
 
-  const { cache, cacheSize} = useCartContext()
+  const { cache } = useCartContext()
 
 
   useEffect(() => {
@@ -85,8 +83,10 @@ export default function Cart() {
             <CacheView />
           </Col>
           <Col xs={12} md={8}>
-            {cacheSize > 0 ?
-              <CheckOutForm /> : ''}
+
+              <CheckOutForm />
+              <br></br> 
+              <br></br> 
             <Link to="/">
               <button> Volver </button>
             </Link>

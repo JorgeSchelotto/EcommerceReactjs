@@ -17,7 +17,7 @@ function CheckOutForm() {
 
     const [id, setId] = useState(0);
 
-    const { cache, price, cleanCache } = useCartContext()
+    const { cache, price, cleanCache, cacheSize } = useCartContext()
     // const [orderId, setOrderId] = useState('');
     const db = getFirestore();
     const orders = db.collection("orders");
@@ -26,6 +26,11 @@ function CheckOutForm() {
         console.log("Receiving new cache")
 
     }, [cache])
+
+    useEffect(() => {
+        console.log("Receiving new id: " + id)
+
+    }, [id])
 
 
     // Creo orden de compra
@@ -58,7 +63,11 @@ function CheckOutForm() {
 
     return (
         <>
-        {id ? <strong>La order de compra se generó correctamente. Su identificador es: {id}</strong> : <span><Fragment>
+        {id ? <strong>La order de compra se generó correctamente. Su identificador es: {id}</strong> :
+            
+
+        !(cacheSize <= 0) ?
+        <span><Fragment>
             <Form onSubmit={CreateOrder}>
                 <Form.Group controlId="formBasicEmail" >
                     <Form.Label>Email</Form.Label>
@@ -83,7 +92,9 @@ function CheckOutForm() {
             </Button>
             </Form>
             
-        </Fragment></span>}
+        </Fragment></span> : 
+        
+        <strong>No se cargaron productos al carrito.</strong>}
         </>
 
         

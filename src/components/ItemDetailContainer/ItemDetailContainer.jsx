@@ -12,7 +12,7 @@ export default function ItemDetailContainer(){
     
     const { id } = useParams()
     const [selectedProduct, setSelectedProduct] = useState(null);
-    const [loading, setLoading] = useState(true);
+    // const [loading, setLoading] = useState(true);
 
 
     // Ejemplo con mocks
@@ -57,9 +57,10 @@ export default function ItemDetailContainer(){
             }
         }).catch((error) => {
             console.log("Error searching items: ", error)
-        }).finally(() => {
-            setLoading(false);
         })
+        // .finally(() => {
+        //     setLoading(false);
+        // })
     }, [id]);
 
     
@@ -67,7 +68,6 @@ export default function ItemDetailContainer(){
         <>
         
         {selectedProduct ? <ItemDetail product={selectedProduct} /> : selectedProduct === false && <strong> No se encontro el item</strong>  }
-        {console.log(selectedProduct)}
         
         
         </>
